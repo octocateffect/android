@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="244dp"
+        android:layout_height="244dp"
+        android:src="@drawable/sister2"
+        android:layout_gravity="center"
+        android:layout_above="@+id/info_text"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="84dp" />
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="+"-->
+        <!--android:textSize="32sp"-->
+        <!--android:id="@+id/addButton"-->
+        <!--android:layout_alignTop="@+id/img"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_above="@+id/info_text"-->
+        <!--android:layout_toRightOf="@+id/img"-->
+        <!--android:layout_toEndOf="@+id/img"-->
+        <!--android:visibility="invisible"/>-->
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="-"-->
+        <!--android:textSize="32sp"-->
+        <!--android:id="@+id/reduceButton"-->
+        <!--android:layout_alignTop="@+id/img"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignBottom="@+id/img"-->
+        <!--android:layout_toLeftOf="@+id/img"-->
+        <!--android:layout_toStartOf="@+id/img"-->
+        <!--android:visibility="invisible"/>-->
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+        <!--android:text="00"-->
+        <!--android:id="@+id/itemCounter"-->
+        <!--android:layout_above="@+id/info_text"-->
+        <!--android:layout_alignRight="@+id/img"-->
+        <!--android:layout_alignEnd="@+id/img"-->
+        <!--android:layout_toRightOf="@+id/reduceButton"-->
+        <!--android:layout_toEndOf="@+id/reduceButton"-->
+        <!--android:gravity="center_vertical|center_horizontal"-->
+        <!--android:layout_alignTop="@+id/img" />-->
+
+
+</RelativeLayout>
