@@ -8,13 +8,14 @@ import com.donzz.justbuy948.dao.UserDao;
 
 public class MainActivity extends AppCompatActivity {
     private UserDao dao;
+    private User user;
     private int number =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dao = new UserDao(this);
-        User user = createUser(number);
+        user = createUser(number);
         dao.insert(user);
 
         FragmentTabHost tabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
@@ -37,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private User createUser(int number) {
-        return new User("Andy" + number);
+        return new User("User" + number);
+    }
+
+    public Order createOrder(int currentPosition) {
+        Order order = new Order(0,"StoreName A", "ProductName", "ProductPrice", "ImageURL", user);
+        order.setUser(user);
+        return order;
     }
 
     /**************************

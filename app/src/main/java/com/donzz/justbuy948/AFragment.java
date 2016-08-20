@@ -18,11 +18,13 @@ import android.widget.TextView;
 import com.azoft.carousellayoutmanager.CarouselLayoutManager;
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
 import com.azoft.carousellayoutmanager.CenterScrollListener;
+import com.donzz.justbuy948.dao.OrderDao;
 import com.donzz.justbuy948.dao.UserDao;
 
 import java.util.ArrayList;
 
 public class AFragment extends Fragment {
+    private CarouselLayoutManager layoutManager;
     private String value = "";
     private TextView ItemCounter;
     private View rootview;
@@ -31,7 +33,8 @@ public class AFragment extends Fragment {
     private String TAG = "AFragment";
     private ShoppingAdapter adapter;
     private int SingleItemCounterA = 0;
-//    private Order dao;
+    private OrderDao dao;
+    private User user;
 
     @Override
     public void onAttach(Activity activity) {
@@ -46,14 +49,18 @@ public class AFragment extends Fragment {
         host.getTabWidget().getChildAt(0).setVisibility(View.VISIBLE);
         host.getTabWidget().getChildAt(1).setVisibility(View.VISIBLE);
         host.getTabWidget().getChildAt(2).setVisibility(View.VISIBLE);
-        final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL, true);
+        layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL, true);
         layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
+
+        UserDao userDao = new UserDao(getActivity());
+        user = userDao.getById(0);
+        dao = new OrderDao(getActivity());
 
         ArrayList<String> myDataset = new ArrayList<>();
         for(int i = 0; i < 100; i++){
             myDataset.add(i + "");
         }
-        adapter = new ShoppingAdapter(myDataset);
+        adapter = new ShoppingAdapter(getActivity(), dao.getByUserId(0));
         final RecyclerView recyclerView = (RecyclerView) rootview.findViewById(R.id.list_view);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -88,7 +95,7 @@ public class AFragment extends Fragment {
                     ReduceButton.setVisibility(View.VISIBLE);
                     ItemCounter.setText("0");
                     ItemCounter.setVisibility(View.VISIBLE);
-//                    ItemCounter.setText(String.valueOf(SingleItemCounterA)); //TODO if dao != null
+                    //TODO if dao != null, load database to adapter
 
                     Log.v("getCenterItemPosition", String.valueOf( layoutManager.getCenterItemPosition()));
                 }
@@ -100,6 +107,9 @@ public class AFragment extends Fragment {
             public void onClick(View view) {
                 SingleItemCounterA = ++SingleItemCounterA;
                 ItemCounter.setText(String.valueOf(SingleItemCounterA));
+                dao.insert(createOrder(layoutManager.getCenterItemPosition()));
+//                adapter.setOrders(dao.getByUserId(user.getId()));
+//                adapter.notifyDataSetChanged();
             }
         });
 
@@ -125,8 +135,10 @@ public class AFragment extends Fragment {
         return rootview;
     }
 
-    private User createUser(int times) {
-        return new User("Andy" + times);
+    public Order createOrder(int currentPosition) {
+        Order order = new Order(0,"StoreName A", "ProductName", "ProductPrice", "ImageURL", user);
+        order.setUser(user);
+        return order;
     }
 
     @Override

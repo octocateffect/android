@@ -1,5 +1,7 @@
 package com.donzz.justbuy948;
 
+import android.content.Context;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +16,21 @@ import java.util.List;
  */
 
 class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ViewHolder> {
-    private List<String> mData;
-    private List<User> users;
 
-    public List<User> getUsers() {
-        return users;
+    private List<Order> orders;
+    private LayoutInflater inflater;
+
+    public ShoppingAdapter(Context context, List<Order> orders) {
+        this.orders = orders;
+        inflater = LayoutInflater.from(context);
     }
-    public void setUsers(List<User> users) {
-        this.users = users;
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
 
@@ -37,10 +46,6 @@ class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ViewHolder> {
         }
     }
 
-    public ShoppingAdapter(List<String> data) {
-        mData = data;
-    }
-
     @Override
     public ShoppingAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -51,12 +56,22 @@ class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mData.get(position));
+        holder.mTextView.setText(orders.get(position).getProductName());
 
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return orders.size();
     }
+
+    public Order getItem(int position) {
+        return orders.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 }

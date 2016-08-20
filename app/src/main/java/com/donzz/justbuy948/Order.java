@@ -13,24 +13,32 @@ public class Order {
     @DatabaseField(generatedId = true)
     private int id;
     @DatabaseField
-    private String name;
+    private String storename;
+    @DatabaseField
+    private String productname;
+    @DatabaseField
+    private String productprice;
     @DatabaseField
     private String description;
+    @DatabaseField
+    private String image_url;
     @DatabaseField(foreign = true, foreignAutoRefresh = true, canBeNull = false, columnName = "user_id")
     private User user;
 
     public Order() {
     }
 
-    public Order(int id, String name, String description, User user) {
+    public Order(int id, String storename, String productname, String productprice, String image_url, User user) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.storename = storename;
+        this.productname = productname;
+        this.productprice = productprice;
+        this.image_url = image_url;
         this.user = user;
     }
 
     public Order(String name, String description) {
-        this.name = name;
+        this.storename = storename;
         this.description = description;
     }
 
@@ -43,21 +51,40 @@ public class Order {
         return this;
     }
 
-    public String getName() {
-        return name;
+
+    public String getStoreName() {
+        return storename;
     }
 
-    public Order setName(String name) {
-        this.name = name;
+    public Order setStoreName(String storename) {
+        this.storename = storename;
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductName() {
+        return productname;
     }
 
-    public Order setDescription(String description) {
-        this.description = description;
+    public Order setProductName(String productname) {
+        this.productname = productname;
+        return this;
+    }
+
+    public String getProductPrice() {
+        return productprice;
+    }
+
+    public Order setProductPrice(String productprice) {
+        this.productprice = productprice;
+        return this;
+    }
+
+    public String getImageURL() {
+        return image_url;
+    }
+
+    public Order setImageURL(String description) {
+        this.image_url = image_url;
         return this;
     }
 
