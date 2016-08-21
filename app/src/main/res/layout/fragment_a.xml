@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment"
         android:layout_above="@+id/list_view"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:visibility="invisible"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_view"
